@@ -1,9 +1,8 @@
-import { readFile } from 'node:fs/promises';
 import { getUser, refreshSession } from '@netlify/identity';
-import type { Config } from '@netlify/functions';
+import type { Config, Context } from '@netlify/functions';
 import { profileFor } from '../../lib/accounts.mts';
 
-export default async (request: Request) => {
+export default async (request: Request, context: Context) => {
   const headers = { 'Cache-Control': 'private, no-store', 'Vary': 'Cookie' };
   if (request.method !== 'GET' && request.method !== 'HEAD') {
     return new Response(null, { status: 405, headers: { ...headers, Allow: 'GET, HEAD' } });
@@ -15,13 +14,18 @@ export default async (request: Request) => {
       return new Response(null, { status: 302, headers: { ...headers, Location: '/login' } });
     }
     await profileFor(user);
-    const html = await readFile('templates/home.html', 'utf8');
-    return new Response(request.method === 'HEAD' ? null : html, {
-      headers: { ...headers, 'Content-Type': 'text/html; charset=utf-8' },
+    const page = await context.rewrite(new URL('/index.html', request.url));
+    const responseHeaders = new Headers(page.headers);
+    for (const [name, value] of Object.entries(headers)) responseHeaders.set(name, value);
+    return new Response(request.method === 'HEAD' ? null : page.body, {
+      status: page.status,
+      headers: responseHeaders,
     });
   } catch {
-    return new Response('Your home is temporarily unavailable. Please reload and try again.', { status: 503, headers });
+    return new Response('Your page is temporarily unavailable. Please reload and try again.', { status: 503, headers });
   }
 };
 
-export const config: Config = { path: ['/home', '/home/'] };
+export const config: Config = {
+  path: ['/home', '/home/', '/about', '/about/', '/dashboard', '/dashboard/'],
+};

@@ -1,12 +1,16 @@
 [build]
-  publish = "public"
+  command = "npm run build"
+  publish = "dist"
 
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
-[functions.home]
-  included_files = ["templates/home.html"]
+[dev]
+  command = "npm run dev:client"
+  targetPort = 5173
+  port = 8889
+  framework = "#custom"
 
 [[redirects]]
   from = "/login"
