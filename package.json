@@ -1,0 +1,19 @@
+{
+  "name": "commonplace-account",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "netlify dev --port 8889",
+    "check": "tsc --noEmit && node --check public/app.js"
+  },
+  "dependencies": {
+    "@netlify/database": "latest",
+    "@netlify/functions": "^6.0.2",
+    "@netlify/identity": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
+  }
+}

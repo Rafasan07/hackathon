@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f9f8f4">
+    <title>Your home · Commonplace</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body class="home-page">
+    <header class="home-header"><a class="wordmark" href="/home"><span class="brand-symbol" aria-hidden="true">c<span>•</span></span>commonplace<span class="wordmark-period">.</span></a><button class="logout-button" id="logout-button">Log out <span aria-hidden="true">↗</span></button></header>
+    <main class="home-main" aria-busy="true" id="home-main">
+      <span class="home-badge"><span></span> YOUR PERSONAL SPACE</span>
+      <h1>Welcome home,<br><em id="welcome-name" class="skeleton">&nbsp;</em><span class="welcome-dot">.</span></h1>
+      <p class="home-intro">Take a breath. Settle in. It’s good to have you here.</p>
+      <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+      <section class="profile-card" aria-labelledby="profile-title"><div class="profile-card-heading"><span class="profile-avatar" id="profile-avatar" aria-hidden="true">C</span><div><span class="eyebrow">A LITTLE ABOUT YOU</span><h2 id="profile-title">Your account</h2></div><span class="verified-label"><span aria-hidden="true">✓</span> Email verified</span></div><dl><div><dt>Full name</dt><dd id="profile-name" class="skeleton">&nbsp;</dd></div><div><dt>Username</dt><dd id="profile-username" class="skeleton">&nbsp;</dd></div><div><dt>Email address</dt><dd id="profile-email" class="skeleton">&nbsp;</dd></div></dl><div class="profile-card-footer"><span class="status-dot"></span> You’re safely logged in. Make yourself at home.</div></section>
+      <p class="home-signoff">Every good thing starts somewhere.<span>Welcome to your somewhere.</span></p>
+    </main>
+    <footer class="home-footer"><span>© <span class="current-year">2026</span> Commonplace</span><span>A little more human.</span></footer>
+  </body>
+</html>
